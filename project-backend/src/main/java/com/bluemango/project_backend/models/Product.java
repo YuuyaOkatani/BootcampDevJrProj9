@@ -18,7 +18,7 @@ public class Product {
         this.name = name;
         this.desc = desc;
         this.price = price;
-        this.category = 0;
+        this.category = category;
         this.promotion = promotion; 
         this.novo = novo;
     }
@@ -54,6 +54,11 @@ public class Product {
     public boolean isNovo() {
         return novo;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     
 

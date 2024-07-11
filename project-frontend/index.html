@@ -48,11 +48,9 @@
 
                             <label for="selectCategory" class="col-sm-2 col-form-label">Categoria:</label>
                             <div class="col-sm-4">
-                                <select class="form-select" aria-label="Seleciona uma categoria" id="selectCategory" required>
-                                    <option value="" selected>Escolha:</option>
-                                    <option value="1">Produção própria</option>
-                                    <option value="2">Nacional</option>
-                                    <option value="3">Importado</option>
+                                <select class="form-select" aria-label="Seleciona uma categoria" id="selectCategory"
+                                    required>
+                                    
                                 </select>
                             </div>
 
@@ -126,14 +124,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js">
 
     </script>
     <script>
-        $("#inputPrice").mask("000.000.000.000,00", {reverse: true});
+        $("#inputPrice").mask("000.000.000.000,00", { reverse: true });
+        loadCategories()
+        loadProducts()
     </script>
 
 </body>

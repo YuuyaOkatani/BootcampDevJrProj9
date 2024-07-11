@@ -1,23 +1,30 @@
 package com.bluemango.project_backend.resources;
 
 import java.lang.reflect.Array;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
-import com.bluemango.project_backend.models.Category;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+
 import com.bluemango.project_backend.models.Product;
 
 import jakarta.annotation.PostConstruct;
 
 @RestController
+@CrossOrigin
 public class ProductContoller {
 
     private List<Product> products = new ArrayList<>();
@@ -47,6 +54,23 @@ public class ProductContoller {
          * p.setPrice(0);
          */
         return p;
+    }
+
+    @PostMapping("products")
+    // criar um corpo JSON para postar
+    public ResponseEntity<Product> save(@RequestBody Product product){
+        product.setId(products.size() + 1);
+        products.add(product);  
+
+        // Location -> URI(Endereço)    
+        URI location = ServletUriComponentsBuilder
+        .fromCurrentRequest()
+        .path("/${id}")
+        .buildAndExpand(product.getId())
+        .toUri();
+
+        return ResponseEntity.created(location).body(product);
+
     }
 
     // Ela inicializa a lista de produtos
@@ -88,14 +112,14 @@ public class ProductContoller {
 
 
         for (int i = 0; i < 3; i++) {
-            // Estou faznedo isso para não ficar muito feio
+            // Estou fazendo isso para não ficar muito feio
         
             Product p = new Product(
                 i, 
                 NomesProd[i], 
                 DescProd[i], 
                 PrecosProd[i], 
-                CategoriasProd[i],
+                CategoriasProd[i], //TODO corrigir este erro que retorna zero
                 PromoProd[i],
                 isNewProd[i]
                 

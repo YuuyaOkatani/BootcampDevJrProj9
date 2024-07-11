@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ import jakarta.annotation.PostConstruct;
 
 
 
-
+@CrossOrigin
 @RestController
 public class CategoryContoller {
 
@@ -27,7 +28,8 @@ public class CategoryContoller {
         String[] nomes = {
             "Produção própria",
             "Nacional",
-            "Importado"
+            "Importado",
+            "Premium"
         };
 
         for(int i=0; i<nomes.length; i++){
