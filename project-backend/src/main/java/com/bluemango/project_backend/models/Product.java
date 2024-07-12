@@ -7,13 +7,13 @@ public class Product {
     private String name; 
     private String desc;
     private double price;
-    private int category; 
+    private Category category; 
     private boolean promotion;
     private boolean novo; 
 
     // Constructor
 
-    public Product(int id, String name, String desc, double price, int category, boolean promotion, boolean novo) {
+    public Product(int id, String name, String desc, double price, Category category, boolean promotion, boolean novo) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -43,7 +43,7 @@ public class Product {
         return price;
     }
 
-    public int getCategory() {
+    public Category getCategory() {
         return category;
     }
 

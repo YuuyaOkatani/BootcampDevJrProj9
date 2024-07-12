@@ -29,7 +29,8 @@ public class CategoryContoller {
             "Produção própria",
             "Nacional",
             "Importado",
-            "Premium"
+            "Premium",
+           
         };
 
         for(int i=0; i<nomes.length; i++){

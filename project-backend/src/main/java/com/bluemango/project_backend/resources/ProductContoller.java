@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-
+import com.bluemango.project_backend.models.Category;
 import com.bluemango.project_backend.models.Product;
 
 import jakarta.annotation.PostConstruct;
@@ -43,18 +43,8 @@ public class ProductContoller {
      * 
      */
 
-    @GetMapping("product")
-    public Product GetProduct() {
-
-        Product p = new Product(0, null, "saas", 0.0, 1, false, false);
-        // isso é mesmo empolgante
-        /*
-         * p.setId(0);
-         * p.setNome(null);
-         * p.setPrice(0);
-         */
-        return p;
-    }
+    
+    
 
     @PostMapping("products")
     // criar um corpo JSON para postar
@@ -95,11 +85,19 @@ public class ProductContoller {
             700
         };
 
-        int[] CategoriasProd = {
-            1,
-            2,
-            3
+        Category[] CategoriasProd = {
+            new Category(1, "Produção própria"),
+            new Category(2, "Nacional"),
+            new Category(3, "Importado"),
+            new Category(4, "Premium"),
         };
+
+        for(int i = 0; i < CategoriasProd.length; i++){
+            
+
+
+        }
+
 
         boolean[] PromoProd = {
             true, false, false
@@ -112,23 +110,19 @@ public class ProductContoller {
 
 
         for (int i = 0; i < 3; i++) {
-            // Estou fazendo isso para não ficar muito feio
+            
         
             Product p = new Product(
                 i, 
                 NomesProd[i], 
                 DescProd[i], 
                 PrecosProd[i], 
-                CategoriasProd[i], //TODO corrigir este erro que retorna zero
+                CategoriasProd[i], 
                 PromoProd[i],
                 isNewProd[i]
                 
                 );
-            /*
-             * p.setId(i);
-             * p.setNome("Product " + i);
-             * p.setPrice(i * 10);
-             */
+      
             products.add(p);
         }
         ;
@@ -144,17 +138,6 @@ public class ProductContoller {
     @GetMapping("products/{id}")
     public ResponseEntity<Product> getProducts(@PathVariable int id) {
 
-        /*
-         * if(id <= products.size()){
-         * return ResponseEntity.ok((products.get(id-1)));
-         * }
-         * else{
-         * 
-         * 
-         * throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
-         * 
-         * }
-         */
 
         Product prod = products
                 .stream()
